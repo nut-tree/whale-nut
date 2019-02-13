@@ -62,6 +62,8 @@ RUN $INST_SCRIPTS/libnss_wrapper.sh
 ADD ./src/common/scripts $STARTUPDIR
 RUN $INST_SCRIPTS/set_user_permission.sh $STARTUPDIR $HOME
 
+ENV OPENCV4NODEJS_DISABLE_AUTOBUILD=1
+
 USER 1000
 
 ENTRYPOINT ["/dockerstartup/vnc_startup.sh"]
