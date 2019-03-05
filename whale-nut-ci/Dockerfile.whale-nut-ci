@@ -4,7 +4,7 @@
 FROM justadudewhohacks/opencv4nodejs-ci:3.4.3-contrib
 
 MAINTAINER Simon Hofmann "simon.hofmann@consol.de"
-ENV REFRESHED_AT 2019-01-25
+ENV REFRESHED_AT 2019-03-05
 
 LABEL io.k8s.description="Headless VNC Container with Xfce window manager" \
       io.k8s.display-name="Headless VNC Container based on Ubuntu" \
@@ -30,8 +30,7 @@ ENV HOME=/headless \
     VNC_COL_DEPTH=24 \
     VNC_RESOLUTION=1280x1024 \
     VNC_PW=vncpassword \
-    VNC_VIEW_ONLY=false \
-    OPENCV4NODEJS_DISABLE_AUTOBUILD=1
+    VNC_VIEW_ONLY=false
 WORKDIR $HOME
 
 ### Add all install scripts for further steps
@@ -63,6 +62,7 @@ ADD ./src/common/scripts $STARTUPDIR
 RUN $INST_SCRIPTS/set_user_permission.sh $STARTUPDIR $HOME
 
 ENV OPENCV4NODEJS_DISABLE_AUTOBUILD=1
+ENV E2E_TEST=1
 
 USER 1000
 
